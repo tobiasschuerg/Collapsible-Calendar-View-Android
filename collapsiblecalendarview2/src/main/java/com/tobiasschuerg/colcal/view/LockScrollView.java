@@ -1,4 +1,4 @@
-package com.shrikanthravi.collapsiblecalendarview.view;
+package com.tobiasschuerg.colcal.view;
 
 import android.content.Context;
 import android.util.AttributeSet;

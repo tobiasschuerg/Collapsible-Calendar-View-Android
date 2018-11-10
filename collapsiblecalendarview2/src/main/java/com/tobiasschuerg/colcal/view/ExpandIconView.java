@@ -1,4 +1,4 @@
-package com.shrikanthravi.collapsiblecalendarview.view;
+package com.tobiasschuerg.colcal.view;
 
 
 /*
@@ -36,7 +36,7 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.view.animation.DecelerateInterpolator;
 
-import com.shrikanthravi.collapsiblecalendarview.R;
+import com.tobiasschuerg.colcal.R;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;

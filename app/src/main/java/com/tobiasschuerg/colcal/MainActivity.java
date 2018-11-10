@@ -1,4 +1,4 @@
-package com.shrikanthravi.collapsiblecalendarview;
+package com.tobiasschuerg.colcal;
 
 import android.graphics.Color;
 import androidx.appcompat.app.AppCompatActivity;
@@ -6,11 +6,9 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
-import com.shrikanthravi.collapsiblecalendarview.widget.CollapsibleCalendar;
+import com.tobiasschuerg.colcal.widget.CollapsibleCalendar;
 
 import org.threeten.bp.LocalDate;
-
-import java.util.GregorianCalendar;
 
 
 public class MainActivity extends AppCompatActivity {

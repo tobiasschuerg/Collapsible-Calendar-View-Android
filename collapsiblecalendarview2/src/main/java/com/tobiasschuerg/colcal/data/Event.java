@@ -1,4 +1,4 @@
-package com.shrikanthravi.collapsiblecalendarview.data;
+package com.tobiasschuerg.colcal.data;
 
 import org.threeten.bp.LocalDate;
 

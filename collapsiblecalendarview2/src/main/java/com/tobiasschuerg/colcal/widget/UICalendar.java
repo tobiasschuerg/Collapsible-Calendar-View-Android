@@ -1,4 +1,4 @@
-package com.shrikanthravi.collapsiblecalendarview.widget;
+package com.tobiasschuerg.colcal.widget;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -14,9 +14,9 @@ import android.widget.RelativeLayout;
 import android.widget.TableLayout;
 import android.widget.TextView;
 
-import com.shrikanthravi.collapsiblecalendarview.R;
-import com.shrikanthravi.collapsiblecalendarview.view.ExpandIconView;
-import com.shrikanthravi.collapsiblecalendarview.view.LockScrollView;
+import com.tobiasschuerg.colcal.R;
+import com.tobiasschuerg.colcal.view.ExpandIconView;
+import com.tobiasschuerg.colcal.view.LockScrollView;
 
 import org.threeten.bp.DayOfWeek;
 import org.threeten.bp.LocalDate;

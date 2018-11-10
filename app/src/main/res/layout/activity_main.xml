@@ -5,9 +5,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.shrikanthravi.collapsiblecalendarview.MainActivity">
+    tools:context="com.tobiasschuerg.colcal.MainActivity">
 
-    <com.shrikanthravi.collapsiblecalendarview.widget.CollapsibleCalendar
+    <com.tobiasschuerg.colcal.widget.CollapsibleCalendar
         android:id="@+id/collapsibleCalendarView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

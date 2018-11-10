@@ -1,4 +1,4 @@
-package com.shrikanthravi.collapsiblecalendarview.data;
+package com.tobiasschuerg.colcal.data;
 
 import android.content.Context;
 import android.graphics.PorterDuff;
@@ -7,8 +7,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.shrikanthravi.collapsiblecalendarview.R;
-import com.shrikanthravi.collapsiblecalendarview.widget.UICalendar;
+import com.tobiasschuerg.colcal.R;
+import com.tobiasschuerg.colcal.widget.UICalendar;
 
 import org.threeten.bp.DayOfWeek;
 import org.threeten.bp.LocalDate;

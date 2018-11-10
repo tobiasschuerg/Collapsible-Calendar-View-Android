@@ -1,4 +1,4 @@
-package com.shrikanthravi.collapsiblecalendarview.widget;
+package com.tobiasschuerg.colcal.widget;
 
 /**
  * Created by shrikanthravi on 07/03/18.
@@ -18,11 +18,11 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
-import com.shrikanthravi.collapsiblecalendarview.R;
-import com.shrikanthravi.collapsiblecalendarview.data.CalendarAdapter;
-import com.shrikanthravi.collapsiblecalendarview.data.Event;
-import com.shrikanthravi.collapsiblecalendarview.listener.OnSwipeTouchListener;
-import com.shrikanthravi.collapsiblecalendarview.view.ExpandIconView;
+import com.tobiasschuerg.colcal.R;
+import com.tobiasschuerg.colcal.data.CalendarAdapter;
+import com.tobiasschuerg.colcal.data.Event;
+import com.tobiasschuerg.colcal.listener.OnSwipeTouchListener;
+import com.tobiasschuerg.colcal.view.ExpandIconView;
 
 import org.threeten.bp.LocalDate;
 import org.threeten.bp.format.DateTimeFormatter;

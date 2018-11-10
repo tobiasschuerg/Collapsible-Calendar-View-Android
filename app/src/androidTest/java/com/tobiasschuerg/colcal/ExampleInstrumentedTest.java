@@ -1,4 +1,4 @@
-package com.shrikanthravi.collapsiblecalendarview;
+package com.tobiasschuerg.colcal;
 
 import android.content.Context;
 import androidx.test.InstrumentationRegistry;

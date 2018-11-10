@@ -83,7 +83,7 @@
 
     </TableLayout>
 
-    <com.shrikanthravi.collapsiblecalendarview.view.LockScrollView
+    <com.tobiasschuerg.colcal.view.LockScrollView
         android:id="@+id/scroll_view_body"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -96,9 +96,9 @@
 
         </TableLayout>
 
-    </com.shrikanthravi.collapsiblecalendarview.view.LockScrollView>
+    </com.tobiasschuerg.colcal.view.LockScrollView>
 
-    <com.shrikanthravi.collapsiblecalendarview.view.ExpandIconView
+    <com.tobiasschuerg.colcal.view.ExpandIconView
         android:id="@+id/expandIcon"
         android:layout_width="30dp"
         android:layout_height="30dp"
