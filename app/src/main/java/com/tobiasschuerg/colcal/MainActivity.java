@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
+import com.tobiasschuerg.colcal.widget.CalendarListener;
 import com.tobiasschuerg.colcal.widget.CollapsibleCalendar;
 
 import org.threeten.bp.LocalDate;
@@ -26,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
         collapsibleCalendar.addEventTag(tomorrow, Color.BLUE);
 
         Log.d("Testing date ", collapsibleCalendar.getSelectedDay().toString());
-        collapsibleCalendar.setCalendarListener(new CollapsibleCalendar.CalendarListener() {
+        collapsibleCalendar.setCalendarListener(new CalendarListener() {
             @Override
             public void onDaySelect() {
 

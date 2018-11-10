@@ -574,24 +574,6 @@ public class CollapsibleCalendar extends UICalendar {
         mListener = listener;
     }
 
-    public interface CalendarListener {
-
-        // triggered when a day is selected programmatically or clicked by user.
-        void onDaySelect();
-
-        // triggered only when the views of day on calendar are clicked by user.
-        void onItemClick(View v);
-
-        // triggered when the data of calendar are updated by changing month or adding events.
-        void onDataUpdate();
-
-        // triggered when the month are changed.
-        void onMonthChange();
-
-        // triggered when the week position are changed.
-        void onWeekChange(int position);
-    }
-
 
 }
 
