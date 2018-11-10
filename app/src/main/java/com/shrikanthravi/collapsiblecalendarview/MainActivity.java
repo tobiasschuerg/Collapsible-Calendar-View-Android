@@ -20,7 +20,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         getSupportActionBar().setElevation(0);
-        getWindow().setStatusBarColor(getResources().getColor(R.color.google_red));
 
         CollapsibleCalendar collapsibleCalendar = findViewById(R.id.collapsibleCalendarView);
         LocalDate today = LocalDate.now();

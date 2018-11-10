@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/linearLayout"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:gravity="center">
+                                                   xmlns:app="http://schemas.android.com/apk/res-auto"
+                                                   xmlns:tools="http://schemas.android.com/tools"
+                                                   android:id="@+id/linearLayout"
+                                                   android:layout_width="match_parent"
+                                                   android:layout_height="match_parent"
+                                                   android:gravity="center">
 
-    <TextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/txt_day"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -26,10 +26,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="Date" />
+        tools:text="Date"/>
 
 
-    <ImageView
+    <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/img_event_tag"
         android:layout_width="8dp"
         android:layout_height="8dp"
@@ -37,7 +37,7 @@
         android:visibility="gone"
         app:layout_constraintStart_toEndOf="@+id/txt_day"
         app:layout_constraintTop_toTopOf="@+id/txt_day"
-        tools:visibility="visible" />
+        tools:visibility="visible"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
