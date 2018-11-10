@@ -1,9 +1,5 @@
 package com.tobiasschuerg.colcal.widget;
 
-/**
- * Created by shrikanthravi on 07/03/18.
- */
-
 
 import android.content.Context;
 import android.graphics.Color;
@@ -145,7 +141,7 @@ public class CollapsibleCalendar extends UICalendar {
         }
         // redraw all views of day
         if (mAdapter != null) {
-            for (int i = 0; i < mAdapter.getCount(); i++) {
+            for (int i = 0; i < mAdapter.count(); i++) {
                 LocalDate day = mAdapter.getItem(i);
                 View view = mAdapter.getView(i);
                 TextView txtDay = view.findViewById(R.id.txt_day);
@@ -209,7 +205,7 @@ public class CollapsibleCalendar extends UICalendar {
             mTableHead.addView(rowCurrent);
 
             // set day view
-            for (int i = 0; i < mAdapter.getCount(); i++) {
+            for (int i = 0; i < mAdapter.count(); i++) {
                 final int position = i;
 
                 if (position % 7 == 0) {
@@ -225,12 +221,7 @@ public class CollapsibleCalendar extends UICalendar {
                         ViewGroup.LayoutParams.WRAP_CONTENT,
                         1));
                 view.setOnTouchListener(getSwipeTouchListener());
-                view.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        onItemClicked(v, mAdapter.getItem(position));
-                    }
-                });
+                view.setOnClickListener(v -> onItemClicked(v, mAdapter.getItem(position)));
                 rowCurrent.addView(view);
             }
 
@@ -361,7 +352,7 @@ public class CollapsibleCalendar extends UICalendar {
 
     public int getSelectedItemPosition() {
         int position = -1;
-        for (int i = 0; i < mAdapter.getCount(); i++) {
+        for (int i = 0; i < mAdapter.count(); i++) {
             LocalDate day = mAdapter.getItem(i);
 
             if (isSelectedDay(day)) {
@@ -374,7 +365,7 @@ public class CollapsibleCalendar extends UICalendar {
 
     public int getTodayItemPosition() {
         int position = -1;
-        for (int i = 0; i < mAdapter.getCount(); i++) {
+        for (int i = 0; i < mAdapter.count(); i++) {
             LocalDate day = mAdapter.getItem(i);
 
             if (isToady(day)) {

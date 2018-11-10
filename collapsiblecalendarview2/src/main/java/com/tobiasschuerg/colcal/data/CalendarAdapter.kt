@@ -10,8 +10,6 @@ import com.tobiasschuerg.colcal.R
 import com.tobiasschuerg.colcal.widget.UICalendar
 import org.threeten.bp.DayOfWeek
 import org.threeten.bp.LocalDate
-import org.threeten.bp.Month.DECEMBER
-import org.threeten.bp.Month.JANUARY
 import java.util.*
 
 /**
@@ -25,24 +23,19 @@ class CalendarAdapter(context: Context) {
     private val mInflater: LayoutInflater by lazy { LayoutInflater.from(context) }
     private var mEventDotSize = UICalendar.EVENT_DOT_BIG
 
-    private val mItemList = ArrayList<LocalDate>()
-    private val mViewList = ArrayList<View>()
+    private val dayList: MutableList<LocalDate> = mutableListOf()
+    private val mViewList: MutableList<View> = mutableListOf()
     private val mEventList = ArrayList<Event>()
 
-    val count: Int
-        get() = mItemList.size
+    fun count(): Int = dayList.size
 
     init {
         refresh()
     }
 
-    fun getItem(position: Int): LocalDate {
-        return mItemList[position]
-    }
+    fun getItem(position: Int): LocalDate = dayList[position]
 
-    fun getView(position: Int): View {
-        return mViewList[position]
-    }
+    fun getView(position: Int): View = mViewList[position]
 
     fun nextMonth() {
         calendar = calendar.plusMonths(1)
@@ -70,81 +63,49 @@ class CalendarAdapter(context: Context) {
 
     fun refresh() {
         // clear data
-        mItemList.clear()
+        dayList.clear()
         mViewList.clear()
 
-        // set calendar
-        val year = calendar.year
-        val month = calendar.monthValue
-
-        calendar = LocalDate.of(year, month, 1)
+        calendar = calendar.withDayOfMonth(1)
 
         val lastDayOfMonth = calendar.lengthOfMonth()
         val firstDayOfWeek = calendar.dayOfWeek
 
         // generate day list
-        var offset = 0 - (firstDayOfWeek.value - mFirstDayOfWeek.value)
+        var offset: Long = 0L - (firstDayOfWeek.value - mFirstDayOfWeek.value)
         if (offset > 0) offset += -7
+
+        var date = calendar.plusDays(offset - 1)
+
         val length = Math.ceil(((lastDayOfMonth - offset).toFloat() / 7).toDouble()).toInt() * 7
         for (i in offset until length + offset) {
-            val numYear: Int
-            val numMonth: Int
-            val numDay: Int
-
-            when {
-                i <= 0             -> { // prev month
-                    if (month == JANUARY.value) {
-                        numYear = year - 1
-                        numMonth = DECEMBER.value
-                    } else {
-                        numYear = year
-                        numMonth = month - 1
-                    }
-                    val tempCal = LocalDate.of(numYear, numMonth, 1)
-                    numDay = tempCal.lengthOfMonth() + i
-                }
-                i > lastDayOfMonth -> { // next month
-                    if (month == DECEMBER.value) {
-                        numYear = year + 1
-                        numMonth = JANUARY.value
-                    } else {
-                        numYear = year
-                        numMonth = month + 1
-                    }
-                    numDay = i - lastDayOfMonth
-                }
-                else               -> {
-                    numYear = year
-                    numMonth = month
-                    numDay = i
-                }
-            }
-
-            val day = LocalDate.of(numYear, numMonth, numDay)
-            val view: View = if (mEventDotSize == UICalendar.EVENT_DOT_SMALL) {
-                mInflater.inflate(R.layout.day_layout_small, null)
-            } else {
-                mInflater.inflate(R.layout.day_layout, null)
-            }
-
-            val txtDay = view.findViewById<TextView>(R.id.txt_day)
-            val imgEventTag = view.findViewById<ImageView>(R.id.img_event_tag)
-
-            txtDay.text = day.dayOfMonth.toString()
-            if (day.month != calendar.month) {
-                txtDay.alpha = 0.3f
-            }
-
-            for (j in mEventList.indices) {
-                val (date, color) = mEventList[j]
-                if (day == date) {
-                    imgEventTag.visibility = View.VISIBLE
-                    imgEventTag.setColorFilter(color, PorterDuff.Mode.SRC_ATOP)
-                }
-            }
-
-            mItemList.add(day)
-            mViewList.add(view)
+            date = date.plusDays(1)
+            dayList.add(date)
         }
+
+        mViewList.addAll(dayList.map { createView(it) })
+    }
+
+    private fun createView(date: LocalDate): View {
+        val view: View = if (mEventDotSize == UICalendar.EVENT_DOT_SMALL) {
+            mInflater.inflate(R.layout.day_layout_small, null)
+        } else {
+            mInflater.inflate(R.layout.day_layout, null)
+        }
+
+        val txtDay = view.findViewById<TextView>(R.id.txt_day)
+        val imgEventTag = view.findViewById<ImageView>(R.id.img_event_tag)
+
+        txtDay.text = date.dayOfMonth.toString()
+        if (date.month != calendar.month) {
+            txtDay.alpha = 0.3f
+        }
+
+        mEventList.find { it.date == date }?.let {
+            imgEventTag.visibility = View.VISIBLE
+            imgEventTag.setColorFilter(it.color, PorterDuff.Mode.SRC_ATOP)
+        }
+
+        return view
     }
 }
