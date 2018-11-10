@@ -59,8 +59,6 @@ public class CollapsibleCalendar extends UICalendar {
     protected void init(Context context) {
         super.init(context);
 
-
-        int size = getEventDotSize();
         CalendarAdapter adapter = new CalendarAdapter(context);
         adapter.setEventDotSize(getEventDotSize());
         setAdapter(adapter);
@@ -68,56 +66,26 @@ public class CollapsibleCalendar extends UICalendar {
 
         // bind events
         mLayoutRoot.setOnTouchListener(getSwipeTouchListener());
-        mBtnPrevMonth.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                prevMonth();
-            }
-        });
+        mBtnPrevMonth.setOnClickListener(v -> prevMonth());
 
-        mBtnNextMonth.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                nextMonth();
-            }
-        });
+        mBtnNextMonth.setOnClickListener(v -> nextMonth());
 
-        mBtnPrevWeek.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                prevWeek();
-            }
-        });
+        mBtnPrevWeek.setOnClickListener(v -> prevWeek());
 
-        mBtnNextWeek.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                nextWeek();
-            }
-        });
+        mBtnNextWeek.setOnClickListener(v -> nextWeek());
 
         expandIconView.setState(ExpandIconView.MORE, true);
 
 
-        expandIconView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (expanded) {
-                    collapse(400);
-                } else {
-                    expand(400);
-                }
+        expandIconView.setOnClickListener(view -> {
+            if (expanded) {
+                collapse(400);
+            } else {
+                expand(400);
             }
         });
 
-        this.post(new Runnable() {
-            @Override
-            public void run() {
-                collapseTo(mCurrentWeekIndex);
-            }
-        });
-
-
+        this.post(() -> collapseTo(mCurrentWeekIndex));
     }
 
     private OnSwipeTouchListener getSwipeTouchListener() {
@@ -158,12 +126,7 @@ public class CollapsibleCalendar extends UICalendar {
 
         if (mIsWaitingForUpdate) {
             redraw();
-            mHandler.post(new Runnable() {
-                @Override
-                public void run() {
-                    collapseTo(mCurrentWeekIndex);
-                }
-            });
+            mHandler.post(() -> collapseTo(mCurrentWeekIndex));
             mIsWaitingForUpdate = false;
             if (mListener != null) {
                 mListener.onDataUpdate();
@@ -235,7 +198,7 @@ public class CollapsibleCalendar extends UICalendar {
                     ViewGroup.LayoutParams.WRAP_CONTENT));
             for (int i = 0; i < 7; i++) {
                 View view = mInflater.inflate(R.layout.layout_day_of_week, null);
-                TextView txtDayOfWeek = (TextView) view.findViewById(R.id.txt_day_of_week);
+                TextView txtDayOfWeek = view.findViewById(R.id.txt_day_of_week);
                 txtDayOfWeek.setText(dayOfWeekIds[(i + getFirstDayOfWeek().getValue()) % 7]);
                 view.setLayoutParams(new TableRow.LayoutParams(
                         0,
@@ -489,12 +452,7 @@ public class CollapsibleCalendar extends UICalendar {
             mScrollViewBody.getLayoutParams().height = targetHeight;
             mScrollViewBody.requestLayout();
 
-            mHandler.post(new Runnable() {
-                @Override
-                public void run() {
-                    mScrollViewBody.smoothScrollTo(0, topHeight);
-                }
-            });
+            mHandler.post(() -> mScrollViewBody.smoothScrollTo(0, topHeight));
 
 
             if (mListener != null) {
@@ -560,20 +518,9 @@ public class CollapsibleCalendar extends UICalendar {
         }
     }
 
-    public void setStateWithUpdateUI(int state) {
-        setState(state);
-
-        if (getState() != state) {
-            mIsWaitingForUpdate = true;
-            requestLayout();
-        }
-    }
-
     // callback
     public void setCalendarListener(CalendarListener listener) {
         mListener = listener;
     }
-
-
 }
 
